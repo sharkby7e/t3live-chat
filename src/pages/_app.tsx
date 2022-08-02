@@ -39,7 +39,7 @@ function getEndingLink() {
     url: process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:3001",
   });
 
-  return wsLink({
+  return wsLink<AppRouter>({
     client,
   });
 }

@@ -7,22 +7,19 @@ const wss = new ws.Server({
   port: 3001,
 });
 
-const handler = applyWSSHandler({ wss, createContext, router: appRouter });
+const handler = applyWSSHandler({ wss, router: appRouter, createContext });
 
 wss.on("connection", () => {
-  console.log(`++ ws connection ${wss.clients.size}`);
-
+  console.log(`Got a connection ${wss.clients.size}`);
   wss.once("close", () => {
-    console.log(`-- ws connection ${wss.clients.size}`);
+    console.log(`Closed connection ${wss.clients.size}`);
   });
 });
 
-console.log(`ws server started`);
+console.log(`wss server start at ws://localhost:3001`);
 
 process.on("SIGTERM", () => {
-  console.log(`SIGTERM`);
-
+  console.log("Got SIGTERM");
   handler.broadcastReconnectNotification();
-
   wss.close();
 });
