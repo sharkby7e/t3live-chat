@@ -22,7 +22,7 @@ export const roomRouter = createRouter()
       };
 
       ctx.ee.emit(Events.SEND_MESSAGE, message);
-      return true;
+      return message;
     },
   })
   .subscription("onSendMessage", {
