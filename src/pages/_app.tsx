@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
 import { wsLink, createWSClient } from "@trpc/client/links/wsLink";
+
 const MyApp: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
